@@ -41,6 +41,9 @@
           <a class="nav-link js-scroll-trigger" href="#about">About</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#music">Music</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
         </li>
         <li class="nav-item">
@@ -55,9 +58,7 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#volunteer">Volunteer</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#music">Music</a>
-        </li>
+
       </ul>
     </div>
   </nav>
@@ -96,6 +97,28 @@
             <i class="fab fa-youtube"></i>
           </a>
         </div>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="music">
+      <div class="w-100">
+        <h2 class="mb-5">Music</h2>
+        <ul class="fa-ul mb-0">
+          <p> Here is my latest upload. For more videos, please check out my
+            <a href="https://www.youtube.com/channel/UCL40kYDDD_XNQrg7mUJy28A">youtube channel</a> :)</p>
+          <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/cLrP74M37JY" frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/iTTnY6NabAk" frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <iframe id="youtube_video" width="600" height="340" frameborder="0" allowfullscreen></iframe>
+
+        </ul>
       </div>
     </section>
 
@@ -297,21 +320,7 @@
       </div>
     </section>
 
-    <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="music">
-      <div class="w-100">
-        <h2 class="mb-5">Music</h2>
-        <ul class="fa-ul mb-0">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/cLrP74M37JY" frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/iTTnY6NabAk" frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-        </ul>
-      </div>
-    </section>
 
   </div>
 
@@ -325,6 +334,15 @@
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
 
+  <script>
+      var channelID = "UCL40kYDDD_XNQrg7mUJy28A";
+      var reqURL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
+      $.getJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(reqURL)+channelID, function(data) {
+          var link = data.items[0].link;
+          var id = link.substr(link.indexOf("=")+1);
+          $("#youtube_video").attr("src","https://youtube.com/embed/"+id + "?controls=0&showinfo=0&rel=0");
+      });
+  </script>
 </body>
 
 </html>
